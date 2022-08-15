@@ -1,12 +1,9 @@
 import { combineReducers } from "redux";
-import housePriceReducer from "./housePriceReducer";
-import authReducer from "./authReducer";
-import addUserReducer from "./addUserReducer";
+import loadDataReducer from './loadDataReducer';
+
 
 const rootReducer = combineReducers({
-    housePriceReducer: housePriceReducer,
-    auth: authReducer,
-    addUser: addUserReducer,
+    loadDataReducer: loadDataReducer,
 });
 
 export default rootReducer;

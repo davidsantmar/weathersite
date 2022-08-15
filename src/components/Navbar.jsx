@@ -1,58 +1,87 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { useState } from 'react';
-import { getApiData, getCoords } from '../services/getData';
+import { useSelector, useDispatch } from "react-redux";
+import { loadData } from "../redux/actions/loadDataActionCreator";
+import { getApiData } from '../services/getData';
 
 const Navbar = () => {
     const [city, setCity] = useState('');
-    const [lat, setLat] = useState('');
-    const [long, setLong] = useState('');
-    //const [temperature, setTemperature] = useState([]);
+    //const cityData = useSelector((state) => state.cities);
+    const [cityData, setCityData] = useState([]);
+    const dispatch = useDispatch();
+    const [tempMin, setTempMin] = useState();
+
+    /*useEffect(() => {
+        getApiData().then((tempJson) => setTempMin(tempJson.main));
+      }, []);
+*/
+    useEffect(() => {
+        getApiData(city)
+        .then((json) => setCityData(json));
+      }, []);
+
 
     const handleEnterPressed = (event) => {
         if(event.key === 'Enter'){
-            searching();        
+            handleChange();       
         }
     }
     function handleChange(event) {
         setCity(event.target.value);
-        searching();
     }
-    function searching(){
-        setLat(getCoords(city)[0]);
-        setLong(getCoords(city)[1]);
-        //setTemperature(getApiData(city));
+    async function handleClick(){
+        //prueba();
+        setCity(city);
+        setCityData(getApiData(city));
+        dispatch(loadData(city));
+       //setTempMin(getApiData(city));
+        //return minTemp;
     }
+    /*async function prueba(){
+        await console.log(cityData);
+    }*/
+   
     return (
         <>
-        <div className='head--web'>
             <header>
                 <span className='welcome'>
                     Welcome to the
                 </span>
                 <span>WeatherSite</span>
             </header>
-            <div className='spain__flag'></div>
-        </div>
-        <div className='search--bar'>
-            <input type='text' 
-            className='search' 
-            placeholder=' Type the city'
-            value={city}
-            onChange={handleChange}
-            onKeyPress={handleEnterPressed} autoFocus            >
-            </input>
+            <div className='search--bar'>
+                <input type='text' 
+                className='search' 
+                placeholder=' Type the city'
+                value={city}
+                onChange={handleChange}
+                onKeyPress={handleEnterPressed} autoFocus            
+                >
+                </input>
             <button 
                 className='search__button' 
                 type='button'
                 data-testid='search-button'
-                onClick={searching}
+                onClick={handleClick}
             >
                 Search
                 </button>
-        </div>
-        <div className='coords'>{lat} {long}</div>
-        <div className='temp--min'></div>
-
+            </div>
+            <div className='temp--min'>
+                
+            {JSON.stringify(tempMin)}
+           {cityData?.length > 0 &&
+           cityData.map((city) => (
+                  <>
+                      <div key={city.id}>
+                        {city.temp}
+                      </div>
+                     
+                      
+                  </>
+                ))}            
+                </div>
         </>
     );
 };
