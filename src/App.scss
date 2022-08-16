@@ -19,7 +19,7 @@ body{
     }        
     .search--bar{
         display: flex;
-        justify-content: space-around;
+        justify-content: space-evenly;
         padding: 1rem;
         font-size: 2rem;
         align-items: center;
@@ -27,18 +27,19 @@ body{
             border-radius: 30px;
             font-size: 2rem;
             border: solid 3px blue;
+            padding-left: 1rem;
         }
         .search__button{
-            border: solid 3px white;
-            background-color: red;
+            border: solid 3px blue;
+            background-color: lightgreen;
             font-size: 2rem;
             border-radius: 30px;
-            color: white;
+            color: blue;
         }
         .search__button:hover{
             border: solid 3px green;
             background-color: white;
-            color: black;
+            color: green;
         }
 
     }
@@ -46,10 +47,30 @@ body{
         display: flex;
         flex-direction: column;
         text-align: center;
+        align-items: center;
+        font-size: 2rem;
         .icon{
-            height:5rem;
-            width: 5rem;
-            border: solid 3px green;
+            height: 14rem;
+            width: 15rem;
+            border: solid .5px blue;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 50px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            background-color: rgba(28, 163, 230, 0.804);
+
+        }
+        .weather{
+            font-style: italic;
+        }
+        .weather:first-letter {
+            text-transform: uppercase;
+        }
+        .temperature{
+            .degree{
+                font-style: 'Poppins';
+            }
         }
     }
     footer{
