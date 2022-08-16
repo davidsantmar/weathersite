@@ -1,47 +1,53 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { useSelector, useDispatch } from "react-redux";
-import { loadData } from "../redux/actions/loadDataActionCreator";
-import { getApiData } from '../services/getData';
+//import { useSelector, useDispatch } from "react-redux";
+//import { loadData } from "../redux/actions/loadDataActionCreator";
+//import { getApiData } from '../services/getData';
 
 const Navbar = () => {
     const [city, setCity] = useState('');
-    //const cityData = useSelector((state) => state.cities);
-    const [cityData, setCityData] = useState([]);
-    const dispatch = useDispatch();
-    const [tempMin, setTempMin] = useState();
+    const [temp, setTemp] = useState();
+    const [weather, setWeather] = useState();
+    const [feels, setFeels] = useState();
+    const [icon, setIcon] = useState();
+
 
     /*useEffect(() => {
         getApiData().then((tempJson) => setTempMin(tempJson.main));
       }, []);
-*/
+
     useEffect(() => {
         getApiData(city)
         .then((json) => setCityData(json));
       }, []);
-
+*/
+      useEffect(() =>{
+        getApiData();
+      }, [])
 
     const handleEnterPressed = (event) => {
         if(event.key === 'Enter'){
-            handleChange();       
+            handleClick();       
         }
     }
     function handleChange(event) {
         setCity(event.target.value);
     }
-    async function handleClick(){
-        //prueba();
+     function handleClick(){
         setCity(city);
-        setCityData(getApiData(city));
-        dispatch(loadData(city));
-       //setTempMin(getApiData(city));
-        //return minTemp;
+        getApiData(city);
     }
-    /*async function prueba(){
-        await console.log(cityData);
-    }*/
-   
+    const getApiData = async (city) => {
+        const API_BASE = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8ad438473ca965f12fa1f6eacacbf35a&units=metric`;
+        const data = await fetch (API_BASE);
+        const json = await data.json();   
+        setIcon(json.weather[0].icon);
+        setTemp(json.main.temp);
+        setWeather(json.weather[0].description);
+        setFeels(json.main.feels_like);
+    }
+
     return (
         <>
             <header>
@@ -68,20 +74,12 @@ const Navbar = () => {
                 Search
                 </button>
             </div>
-            <div className='temp--min'>
-                
-            {JSON.stringify(tempMin)}
-           {cityData?.length > 0 &&
-           cityData.map((city) => (
-                  <>
-                      <div key={city.id}>
-                        {city.temp}
-                      </div>
-                     
-                      
-                  </>
-                ))}            
-                </div>
+            <div className='current--weather'>
+                <span className='weather'>{weather}</span>
+                <div className='icon' style={{backgroundImage: `url(http://openweathermap.org/img/w/${icon}.png`)}}></div>
+                <span className='temperature'>{temp}</span>
+                <span className='feels__like'>{feels}</span>
+            </div>
         </>
     );
 };

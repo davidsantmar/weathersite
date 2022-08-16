@@ -42,16 +42,15 @@ body{
         }
 
     }
-    .coords{
-        height: 3rem;
-        width: 6rem;
-        border: solid 1px red;
-    }
-    .temp--min{
-        height: 3rem;
-        width: 6rem;
-        border: solid 1px green;
-        font-size: 1.5rem;
+    .current--weather{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        .icon{
+            height:5rem;
+            width: 5rem;
+            border: solid 3px green;
+        }
     }
     footer{
         color: black;
