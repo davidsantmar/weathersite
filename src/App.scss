@@ -29,17 +29,16 @@ body{
             border: solid 3px blue;
             padding-left: 1rem;
         }
-        .search__button{
-            border: solid 3px blue;
-            background-color: lightgreen;
-            font-size: 2rem;
+        .search--button{
             border-radius: 30px;
-            color: blue;
+            background-color: yellow;
+            color: black;
+            font-family: 'Poppins';
+            font-weight: bold;
+            font-size: 1.5rem;
         }
-        .search__button:hover{
-            border: solid 3px green;
-            background-color: white;
-            color: green;
+        .search--button:hover{
+            background-color: greenyellow;
         }
 
     }
@@ -59,17 +58,51 @@ body{
             margin-top: 1rem;
             margin-bottom: 1rem;
             background-color: rgba(28, 163, 230, 0.804);
-
         }
         .weather{
+            height:3rem;
             font-style: italic;
         }
         .weather:first-letter {
             text-transform: uppercase;
         }
         .temperature{
+            height: 3rem;
             .degree{
                 font-style: 'Poppins';
+            }
+        }
+        .feels__like{
+            height: 3rem;
+        }
+    }
+    .hourly--container{
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+        padding: 1rem;
+        text-align: center;
+        align-items: center;
+        overflow: scroll;
+        margin-top: 1rem;
+        .hourly__data{
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+            border: solid .5px blue;
+            width: 6rem;
+            height: 8rem;
+            border-radius: 30px;
+            background-color: rgba(28, 163, 230, 0.804);
+            color: white;
+            text-align: center;
+            align-items: center;
+            margin-right: 1rem;
+            .hourly__icon{
+                width: 5rem;
+                height: 6rem;
+                background-repeat: no-repeat;
+                background-size: cover;
             }
         }
     }
@@ -79,6 +112,7 @@ body{
         background-color: rgb(15, 144, 242);
         text-align: center;
         padding: 1rem;
+        margin-top: 2.1rem;
         .go--container{
             color: #ED1D24;
         }

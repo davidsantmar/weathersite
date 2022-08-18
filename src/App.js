@@ -1,11 +1,11 @@
 import './App.scss';
-import Navbar from './components/Navbar';
+import Front from './components/Front';
 import Footer from './components/Footer';
 
 function App() {
   return (
     <>
-        <Navbar />
+        <Front />
         <Footer />
     </>
   );
