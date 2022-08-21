@@ -47,23 +47,13 @@ const Front = () => {
     const [twelvethIcon, setTwelvethIcon] = useState();
     const [twelvethHour, setTwelvethHour] = useState();
 
-    /*useEffect(() =>{
-        getApiData();
-    }, []);*/
-
     const handleEnterPressed = (event) => {
         if(event.key === 'Enter'){
-            handleClick();
+            fetchUnion();
         }
     }
     const handleChange = (event) => {
         setCity(event.target.value);
-    }
-    const handleClick = () => {
-        setCity(city);
-        //getApiData(city);
-        //getHourlyData(lat, lon);
-        fetchUnion();
     }
     const reset = () => { 
         setCity('');
@@ -74,58 +64,109 @@ const Front = () => {
         setColor('white');
         setLat('');
         setLon('');
+        setFirstTemp('');
+        setFirstIcon();  
+        setFirstHour('');  
+        setSecondTemp('');  
+        setSecondIcon();  
+        setSecondHour('');  
+        setThirdTemp('');  
+        setThirdIcon();  
+        setThirdHour('');  
+        setFourthTemp('');  
+        setFourthIcon();  
+        setFourthHour('');  
+        setFifthTemp('');  
+        setFifthIcon();  
+        setFifthHour('');  
+        setSixthTemp('');  
+        setSixthIcon();  
+        setSixthHour('');  
+        setSeventhTemp('');  
+        setSeventhIcon();  
+        setSeventhHour('');  
+        setEighthTemp('');  
+        setEighthIcon();  
+        setEigthtHour('');  
+        setNinethTemp('');  
+        setNinethIcon();  
+        setNinethHour('');  
+        setTenthTemp('');  
+        setTenthIcon();  
+        setTenthHour('');  
+        setEleventhTemp('');
+        setEleventhIcon();
+        setEleventhHour('');
+        setTwelvethTemp('');
+        setTwelvethIcon();
+        setTwelvethHour('');
+    }
+    const getHour = (unixTime) => {
+        const timeFormatted = new Date(unixTime * 1000);
+        const hour = timeFormatted.getHours();
 
+        return hour;
     }
     const getApiData = async (city) => {
         const API_BASE = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=8ad438473ca965f12fa1f6eacacbf35a&units=metric`;
         const data = await fetch (API_BASE);
         const json = await data.json();
+        setLon(json.coord.lon);
+        setLat(json.coord.lat); 
         setIcon(json.weather[0].icon);
         setTemp(Math.ceil(json.main.temp) + ' °');
         setWeather(json.weather[0].description);
         setFeels('Feels like: ' + Math.ceil(json.main.feels_like) + ' °');
         setColor('lightgreen');
-        setLon(json.coord.lon);
-        setLat(json.coord.lat);
 
         return json;
     }
     const getHourlyData = async (lati, long) => {
         const API_BASE1 = `https://api.openweathermap.org/data/2.5/onecall?lat=${lati}&lon=${long}&exclude=minutely&appid=afdbaca5d0aef91b025609ff649b1f63&units=metric`;        
         const data = await fetch (API_BASE1);
-        const json1 = await data.json(); 
-        setFirstIcon(json1.hourly.weather[0].icon);
-        setFirstTemp(Math.ceil(json1.hourly[0].temp) + ' °');
-        setFirstHour();
-        setSecondIcon(json1.hourly.weather[1].icon);
-        setSecondTemp(Math.ceil(json1.hourly[1].temp) + ' °');
-        setThirdIcon(json1.hourly[0].weather[2].icon);
-        setThirdTemp(Math.ceil(json1.hourly[2].temp) + ' °');
-        setFourthIcon(json1.hourly[0].weather[3].icon);
-        setFourthTemp(Math.ceil(json1.hourly[3].temp) + ' °');
-        setFifthIcon(json1.hourly[0].weather[4].icon);
-        setFifthTemp(Math.ceil(json1.hourly[4].temp) + ' °');
-        setSixthIcon(json1.hourly[0].weather[5].icon);
-        setSixthTemp(Math.ceil(json1.hourly[5].temp) + ' °');
-        setSeventhIcon(json1.hourly[0].weather[6].icon);
-        setSeventhTemp(Math.ceil(json1.hourly[6].temp) + ' °');
-        setEighthIcon(json1.hourly[0].weather[7].icon);
-        setEighthTemp(Math.ceil(json1.hourly[7].temp) + ' °');
-        setNinethIcon(json1.hourly[0].weather[8].icon);
-        setNinethTemp(Math.ceil(json1.hourly[8].temp) + ' °');
-        setTenthIcon(json1.hourly[0].weather[9].icon);
-        setTenthTemp(Math.ceil(json1.hourly[9].temp) + ' °');
-        setEleventhIcon(json1.hourly[0].weather[10].icon);
-        setEleventhTemp(Math.ceil(json1.hourly[10].temp) + ' °');
-        setTwelvethIcon(json1.hourly[0].weather[11].icon);
-        setTwelvethTemp(Math.ceil(json1.hourly[11].temp) + ' °');
+        const json1 = await data.json();
+        setFirstHour(getHour(json1.hourly[1].dt));
+        setFirstTemp(Math.ceil(json1.hourly[1].temp) + ' °');
+        setFirstIcon(json1.hourly[1].weather[0].icon);
+        setSecondHour(getHour(json1.hourly[2].dt));
+        setSecondIcon(json1.hourly[2].weather[0].icon);
+        setSecondTemp(Math.ceil(json1.hourly[2].temp) + ' °');
+        setThirdHour(getHour(json1.hourly[3].dt));
+        setThirdIcon(json1.hourly[3].weather[0].icon);
+        setThirdTemp(Math.ceil(json1.hourly[3].temp) + ' °');
+        setFourthHour(getHour(json1.hourly[4].dt));
+        setFourthIcon(json1.hourly[4].weather[0].icon);
+        setFourthTemp(Math.ceil(json1.hourly[4].temp) + ' °');
+        setFifthHour(getHour(json1.hourly[5].dt));
+        setFifthIcon(json1.hourly[5].weather[0].icon);
+        setFifthTemp(Math.ceil(json1.hourly[5].temp) + ' °');
+        setSixthHour(getHour(json1.hourly[6].dt));
+        setSixthIcon(json1.hourly[6].weather[0].icon);
+        setSixthTemp(Math.ceil(json1.hourly[6].temp) + ' °');
+        setSeventhHour(getHour(json1.hourly[7].dt));
+        setSeventhIcon(json1.hourly[7].weather[0].icon);
+        setSeventhTemp(Math.ceil(json1.hourly[7].temp) + ' °');
+        setEigthtHour(getHour(json1.hourly[8].dt));
+        setEighthIcon(json1.hourly[8].weather[0].icon);
+        setEighthTemp(Math.ceil(json1.hourly[8].temp) + ' °');
+        setNinethHour(getHour(json1.hourly[9].dt));
+        setNinethIcon(json1.hourly[9].weather[0].icon);
+        setNinethTemp(Math.ceil(json1.hourly[9].temp) + ' °');
+        setTenthHour(getHour(json1.hourly[10].dt));
+        setTenthIcon(json1.hourly[10].weather[0].icon);
+        setTenthTemp(Math.ceil(json1.hourly[10].temp) + ' °');
+        setEleventhHour(getHour(json1.hourly[11].dt));
+        setEleventhIcon(json1.hourly[11].weather[0].icon);
+        setEleventhTemp(Math.ceil(json1.hourly[11].temp) + ' °');
+        setTwelvethHour(getHour(json1.hourly[12].dt));
+        setTwelvethIcon(json1.hourly[12].weather[0].icon);
+        setTwelvethTemp(Math.ceil(json1.hourly[12].temp) + ' °');
 
         return json1;
     }
-    const fetchUnion = () => {
-        Promise.all([getApiData(city), getHourlyData(lat, lon)]);
+    const  fetchUnion = async() => {
+        await Promise.all([getHourlyData(lat, lon), getApiData(city)]);
     }
-    //fetchUnion();  no puede hacerse así porque consume los 1k requests
 
     return (
         <>
@@ -146,7 +187,8 @@ const Front = () => {
                 </input>
                 <button 
                     className='search--button'
-                    onClick={handleClick}>
+                    onClick={fetchUnion}
+                >
                     Search
                 </button>
             </div>
@@ -158,6 +200,13 @@ const Front = () => {
                 </span>
                 <span className='temperature'>{temp}</span>
                 <span className='feels__like'>{feels}</span>
+            </div>
+            <div className='forecast--button--container'>
+                <button className='forecast__button'
+                    onClick={getHourlyData(lat, lon)}
+                 >
+                    12 next hour forecast
+                </button>
             </div>
             <div className='hourly--container'>
                 <div className='hourly__data'>
