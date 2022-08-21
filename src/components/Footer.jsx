@@ -10,6 +10,7 @@ const Footer = () => {
             <sup>
                 &#169;
             </sup>
+            <span className='logo'>ooo</span>
         </footer>
     );
 };

@@ -205,7 +205,7 @@ const Front = () => {
                 <button className='forecast__button'
                     onClick={getHourlyData(lat, lon)}
                  >
-                    12 next hour forecast
+                    12 next hours forecast
                 </button>
             </div>
             <div className='hourly--container'>
