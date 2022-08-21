@@ -1,13 +1,7 @@
 
 # Weather Site App
 
-
-A simple rock, paper, scissors game Avengers based. My first version was built using HTML, CSS and JS and this it's developed with REACT.
-Fully responsive.
-Tested components with Jest.
-
-Just click on the rock, paper or scissors character and the system will random an enemy character to battle with you.
-The first to arrive to 5 victories will win the battle!
+A single page app to get current weather at any city in the world. Shows current temperature, feels like, uvi and forecast for next 12 hours. Data comes from openweatherapi using HTML, Sass and JS. Deployed with Firebase.
 
 <a href="https://weathersiteapp.web.app//">App firebase deployed</a>
 
