@@ -1,7 +1,7 @@
 
 # Weather Site App
 
-A single page app to get current weather at any city in the world. Shows current temperature, feels like, uvi and forecast for next 12 hours. Data comes from openweatherapi using HTML, Sass and JS. Deployed with Firebase.
+A single page app to get current weather at any city in the world. Shows current temperature, feels like and forecast for next 12 hours. Data comes from openweatherapi using HTML, Sass and JS. Deployed with Firebase.
 
 <a href="https://weathersiteapp.web.app//">App firebase deployed</a>
 
