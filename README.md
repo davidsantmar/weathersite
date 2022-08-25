@@ -5,7 +5,7 @@ A single page app to get current weather at any city in the world. Shows current
 
 <a href="https://weathersiteapp.web.app//">App firebase deployed</a>
 
-<img width="1436" alt="screenshot" src="https://user-images.githubusercontent.com/85759378/186715920-ee57cc38-4694-4e54-9ea5-e605923042ab.png">
+<img width="1437" alt="screenshot" src="https://user-images.githubusercontent.com/85759378/186751362-8cea4e51-d21a-4ac0-bc0e-44f6fde6c1b1.png">
 
 
 
